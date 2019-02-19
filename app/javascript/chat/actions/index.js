@@ -1,4 +1,4 @@
-const BASE_URL = 'https://wagon-chat.herokuapp.com';
+const BASE_URL = '';
 
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const MESSAGE_POSTED = 'MESSAGE_POSTED';
@@ -6,7 +6,7 @@ export const CHANNEL_SELECTED = 'CHANNEL_SELECTED';
 
 export function fetchMessages(channel) {
   const url = `${BASE_URL}/${channel}/messages`;
-  const promise = fetch(url).then(r => r.json());
+  const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json());
 
   return {
     type: FETCH_MESSAGES,
@@ -19,6 +19,7 @@ export function createMessage(channel, author, content) {
   const body = { author, content }; // ES6 destructuring
   const promise = fetch(url, {
     method: 'POST',
+    credentials: "same-origin",
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
