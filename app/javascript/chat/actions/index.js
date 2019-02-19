@@ -1,4 +1,4 @@
-const BASE_URL = '';
+const BASE_URL = '/api/v1/channels';
 
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
 export const MESSAGE_POSTED = 'MESSAGE_POSTED';
