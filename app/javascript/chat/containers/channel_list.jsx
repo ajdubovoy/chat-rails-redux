@@ -3,10 +3,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { selectChannel, fetchMessages } from '../actions/index';
+import { selectChannel, fetchMessages, fetchChannels } from '../actions/index';
 import { Link } from 'react-router-dom';
 
 class ChannelList extends Component {
+  componentDidMount() {
+    this.props.fetchChannels();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedChannel !== this.props.selectedChannel) {
       this.props.fetchMessages(nextProps.selectedChannel);
@@ -45,12 +49,12 @@ class ChannelList extends Component {
 
 function mapStateToProps(state) {
   return {
-    channels: state.channels,
+    channels: state.channels
   };
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectChannel, fetchMessages }, dispatch);
+  return bindActionCreators({ fetchChannels, selectChannel, fetchMessages }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChannelList);

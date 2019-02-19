@@ -1,6 +1,7 @@
 const BASE_URL = '/api/v1/channels';
 
 export const FETCH_MESSAGES = 'FETCH_MESSAGES';
+export const FETCH_CHANNELS = 'FETCH_CHANNELS';
 export const MESSAGE_POSTED = 'MESSAGE_POSTED';
 export const CHANNEL_SELECTED = 'CHANNEL_SELECTED';
 
@@ -10,6 +11,16 @@ export function fetchMessages(channel) {
 
   return {
     type: FETCH_MESSAGES,
+    payload: promise // Will be resolved by redux-promise
+  };
+}
+
+export function fetchChannels(channel) {
+  const url = `${BASE_URL}`;
+  const promise = fetch(url, { credentials: "same-origin" }).then(r => r.json());
+
+  return {
+    type: FETCH_CHANNELS,
     payload: promise // Will be resolved by redux-promise
   };
 }
