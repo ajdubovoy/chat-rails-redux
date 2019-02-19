@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectChannel, fetchMessages } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 class ChannelList extends Component {
   componentWillReceiveProps(nextProps) {
@@ -21,10 +22,11 @@ class ChannelList extends Component {
       <li
         key={channel}
         className={channel === this.props.selectedChannel ? 'active' : null}
-        onClick={() => this.handleClick(channel)}
         role="presentation"
       >
-        #{channel}
+        <Link to={`/channels/${channel}`}>
+          #{channel}
+        </Link>
       </li>
     );
   }
